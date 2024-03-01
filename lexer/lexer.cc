@@ -80,6 +80,28 @@ bool isOperator(char op)
 }
 
 
+bool isInteger(char num)
+{
+    int count = 0;
+
+    for(int foundDot = 0; foundDot < numbers.size();foundDot++)
+    {
+        if(numbers[foundDot] == num)
+        {
+            return true;
+
+        }
+    }
+
+    
+    
+    
+    return false;
+    
+
+
+}
+
 bool isIdentifier(string id)
 {
     for(int i = 0; i < numbers.size(); i++)
@@ -90,11 +112,20 @@ bool isIdentifier(string id)
         }
     }
 
-    if(isDelimeter(id[0]) || isSeperator(id[0]) || isOperator(id[0]))
+
+    if(isDelimeter(id[0]) || isSeperator(id[0]) || isOperator(id[0]) || isInteger(id[0]))
     {
         return false;
     }
     
+
+    for(int i = 0; i < numbers.size(); i++)
+    {
+        if(isDelimeter(id[i]) || isSeperator(id[i]) || isOperator(id[i]) || isInteger(id[i]))
+        {
+            return false;
+        }
+    }
 
     return true;
 }
@@ -151,27 +182,6 @@ string substring(string s, int left, int right)
 
 
 
-bool isInteger(char num)
-{
-    int count = 0;
-
-    for(int foundDot = 0; foundDot < numbers.size();foundDot++)
-    {
-        if(numbers[foundDot] == num)
-        {
-            return true;
-
-        }
-    }
-
-    
-    
-    
-    return false;
-    
-
-
-}
 
 bool isInteger(string num)
 {
@@ -200,7 +210,7 @@ bool isOperator(string num)
 }
 
 
-void readFile(string file)
+void lexer(string file)
 {
     ifstream myFile;
     myFile.open(file);
@@ -318,5 +328,5 @@ void readFile(string file)
 
 int main()
 {
-    readFile("input.txt");
+    lexer("input.txt");
 }
