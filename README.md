@@ -14,10 +14,20 @@ the start to the end and appends each character at the string paramater index an
 there is a "isInteger" function which loops through the number vector, if there are any characters that are not integers it return false, otherwise it returns true, there is a "isOperator" function which loops through the operator vector, if there are any characters that are not operatoes it return false,
 otherwise it returns true. There is a lexer function which then takes an string file as a paramter and reads through string file and loops through each line of the string file using two int values as indexes which are left and right, and left tells its the beggining of the loop and right tells its 
 the end of the loop the string loops when left is less than or equal to right or right is less than or equal to the string length, if the left and right numbers are the same then its only looking at one character and if the left and right are different its looking for or comparing a string, when the left
-and right are different it gets a substring from the left index to the right index minus 1, and it compares the string and checks if it is a keyword, identifier, operator, real or integer when the character at the right index of the string is a delimeter and if it is a delimeter, then it gets a substring from
-left to right -1 because they don't want the delimeter in the string and it makes sure the delimeter isn't appended to the substrin, if it is a keyword, identifier, integer, or operator then it would output the token and lexeme into a new output file and set the left index equal to the right index, if 
-there is no delimeter at the right index of the string it increments the right and if the left and right are equal to each other and if it is a delimeter it then checks to see if that character is an operator, seperator, integer, and under call conditions it increments the right and sets the left equal
-to the right, if a character or string mrrts a condition through the function calls then it gets outputted to the output file and when the loop stops, the output file is generated through a main function o=in the program.
+and right are different it gets a substring from the left index to the right index minus 1, and it compares the string and checks if it is a keyword, identifier, operator, real or integer when the character at the right index of the string is a delimeter and if it is a delimeter, then it gets a substring from left to right -1 because they don't want the delimeter in the string and it makes sure the delimeter isn't appended to the substring, if it is a keyword, identifier, integer, or operator then it would output the token and lexeme into a new output file and set the left index equal to the right index, if there is no delimeter at the right index of the string it increments the right and if the left and right are equal to each other and if it is a delimeter it then checks to see if that character is an operator, seperator, integer, and under call conditions it increments the right and sets the left equal
+to the right, if a character or string mrrts a condition through the function calls then it gets outputted to the output file and when the loop stops, the output file is generated through a main function in the program.
+
+
+Token classes
+
+Keywords
+Identifiers
+Integers(String/Multi-Dight)
+Reals
+Operators(String/Multi-Operator)
+Seperators
+Operators(Character/Single-Operator)
+Integers(Character/Single-Dight)
 
 
 
