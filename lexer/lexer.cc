@@ -4,7 +4,7 @@
 #include <cstring>
 
 #include <vector>
-#include <stack>
+#include <map>
 using namespace std;
 
 vector<string> keywords = {"auto","break","case","char", 
@@ -210,7 +210,7 @@ bool isOperator(string num)
 }
 
 
-void lexer(string file)
+multimap<string,string> lexer(string file)
 {
     ifstream myFile;
     myFile.open(file);
@@ -219,7 +219,7 @@ void lexer(string file)
     string s;
     outFile << " Lexeme       " <<"|"<< "       Token"  << "   \n";
     outFile << "___________________________________________________\n";
-
+    multimap<string,string> tokens;
     while (getline(myFile, s)) 
     {
          
@@ -242,6 +242,7 @@ void lexer(string file)
                 {
                     outFile << " Operator     " <<"|" <<"       " << s[right] << "   \n";
                     outFile << "_____________________________________________________\n";
+                    tokens.insert({"Operator", to_string(s[right])});
                     right++;
                     left = right;
                 } 
@@ -249,6 +250,7 @@ void lexer(string file)
                 {
                     outFile << " Seperator    " <<"|" <<"       " << s[right] << "       \n";
                     outFile << "_____________________________________________________\n";
+                    tokens.insert({"Seperator", to_string(s[right])});
                     right++;
                     left = right;
                 }
@@ -256,7 +258,7 @@ void lexer(string file)
                 {
                     outFile << " Integer       " << "|" <<"       " << s[right] << "      \n";
                     outFile << "_____________________________________________________\n";
-
+                    tokens.insert({"Integer", to_string(s[right])});
                     right++;
                     left = right;
                 }
@@ -278,7 +280,7 @@ void lexer(string file)
                 {
                     outFile << " Keyword      " << "|" <<"       " << sub << "   \n";
                     outFile << "_____________________________________________________\n";
-
+                    tokens.insert({"Keyword", sub});
                     left = right;
 
                 }
@@ -287,14 +289,14 @@ void lexer(string file)
                 {
                     outFile << " Identifier   " << "|" <<"       " << sub << "          \n";
                     outFile << "_____________________________________________________\n";
-
+                    tokens.insert({"Identifier", sub});
                     left = right;
                 }
                 else if(isReal(sub))
                 {
                     outFile << " Real         " << "|" <<"       " << sub << "   \n";
                     outFile << "_____________________________________________________\n";
-
+                    tokens.insert({"Real", sub});
                     left = right;
                 }
 
@@ -302,7 +304,7 @@ void lexer(string file)
                 {
                     outFile << " Integer      " << "|" <<"      " << sub << "   \n";
                     outFile << "___________________________________________________\n";
-
+                    tokens.insert({"Integer", sub});
                     left = right;
                 }
 
@@ -310,7 +312,7 @@ void lexer(string file)
                 {
                     outFile << " Operator     " << "|" <<"     " << sub << "   \n";
                     outFile << "___________________________________________________\n";
-
+                    tokens.insert({"Operator", sub});
                     left = right;
                 }
 
@@ -328,5 +330,11 @@ void lexer(string file)
 
 int main()
 {
-    lexer("input.txt");
+        multimap<string,string> lex = lexer("input.txt");
+
+        for (auto it : lex)
+        {
+            cout << it.first << endl;
+            cout << it.second << endl;
+        }
 }
