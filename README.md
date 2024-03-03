@@ -20,13 +20,13 @@ to the right, if a character or string mrrts a condition through the function ca
 
 Token classes
 
-Keywords
-Identifiers
-Integers(String/Multi-Dight)
-Reals
-Operators(String/Multi-Operator)
-Seperators
-Operators(Character/Single-Operator)
+Keywords,
+Identifiers,
+Integers(String/Multi-Dight),
+Reals,
+Operators(String/Multi-Operator),
+Seperators,
+Operators(Character/Single-Operator),
 Integers(Character/Single-Dight)
 
 
