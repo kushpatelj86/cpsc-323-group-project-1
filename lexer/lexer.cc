@@ -325,6 +325,7 @@ multimap<string,string> lexer(string file)
             }  
         }
     }
+    return tokens;
 }       
         
 
@@ -332,9 +333,8 @@ int main()
 {
         multimap<string,string> lex = lexer("input.txt");
 
-        for (auto it : lex)
+        for (multimap<string, string>::iterator it = lex.begin(); it != lex.end();++it)
         {
-            cout << it.first << endl;
-            cout << it.second << endl;
+            cout << it->first << ": " << it->second << endl;
         }
 }
