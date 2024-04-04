@@ -2,7 +2,7 @@
 #include <fstream>
 #include <string>
 #include <cstring>
-
+#include <cctype>
 #include <vector>
 #include <map>
 using namespace std;
@@ -104,26 +104,13 @@ bool isInteger(char num)
 
 bool isIdentifier(string id)
 {
-    for(int i = 0; i < numbers.size(); i++)
-    {
-        if (id[0] == numbers[i])  
-        {
-            return false;
-        }
+     if (id.empty() || !isalpha(id[0]) && id[0] != '_') {
+        return false;  // Identifier must start with a letter or underscore
     }
 
-
-    if(isDelimeter(id[0]) || isSeperator(id[0]) || isOperator(id[0]) || isInteger(id[0]))
-    {
-        return false;
-    }
-    
-
-    for(int i = 0; i < numbers.size(); i++)
-    {
-        if(isDelimeter(id[i]) || isSeperator(id[i]) || isOperator(id[i]) || isInteger(id[i]))
-        {
-            return false;
+    for (size_t i = 1; i < id.size(); i++) {
+        if (!isalnum(id[i]) && id[i] != '_') {
+            return false;  // Subsequent characters can be alphanumeric or underscore
         }
     }
 
